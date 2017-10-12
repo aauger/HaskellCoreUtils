@@ -1,5 +1,6 @@
 import System.Environment
 import System.IO
+import Data.List
 
 -- zipK is merely zip, but retains elements of the longer list
 -- with a filler inserted
@@ -13,8 +14,8 @@ spResult :: (String, String) -> String
 spResult (a, "") = a
 spResult ("", b) = "\t" ++ b
 spResult (a, b)
-	| a == b     = replicate 2 '\t' ++ a
-	| otherwise  = a ++ "\n\t" ++ b
+	| a == b     = "\t\t" ++ a
+	| otherwise  = (intercalate "\n") . sort $ [a, "\t" ++ b]
 
 main = do
 	args <- getArgs
