@@ -1,6 +1,7 @@
 import System.Environment
 import System.IO
 import Data.List
+import Control.Monad
 
 -- zipK is merely zip, but retains elements of the longer list
 -- with a filler inserted
@@ -25,4 +26,4 @@ main = do
 	let sFileLines = lines sFileCont
 	let lZip = zipK fFileLines sFileLines ""
 	let results = map spResult lZip
-	mapM_ putStrLn results
+	forM_ results putStrLn
