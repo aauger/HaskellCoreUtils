@@ -3,20 +3,14 @@ import System.IO
 import Data.List
 import Control.Monad
 
--- zipK is merely zip, but retains elements of the longer list
--- with a filler inserted
-zipK :: [a] -> [a] -> a -> [(a, a)]
-zipK (x:xs) (y:ys) k = (x, y) : zipK xs ys k
-zipK (x:xs) _      k = (x, k) : zipK xs [] k
-zipK _      (y:ys) k = (k, y) : zipK [] ys k
-zipK _      _      k = []
-
-spResult :: (String, String) -> String
-spResult (a, "") = a
-spResult ("", b) = "\t" ++ b
-spResult (a, b)
-	| a == b     = "\t\t" ++ a
-	| otherwise  = (intercalate "\n") . sort $ [a, "\t" ++ b]
+comp :: [String] -> [String] -> [String]
+comp ax@(x:xs) ay@(y:ys) = case compare x y of
+	LT -> x : comp xs ay
+	EQ -> ("\t\t" ++ x) : comp xs ys
+	GT -> ("\t" ++ y) : comp ax ys
+comp xs [] = xs
+comp [] ys = ["\t" ++ y | y <- ys]
+comp _ _ = []
 
 main = do
 	args <- getArgs
@@ -24,6 +18,5 @@ main = do
 	sFileCont <- readFile (args !! 1)
 	let fFileLines = lines fFileCont
 	let sFileLines = lines sFileCont
-	let lZip = zipK fFileLines sFileLines ""
-	let results = map spResult lZip
+	let results = comp fFileLines sFileLines
 	forM_ results putStrLn
