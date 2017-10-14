@@ -10,13 +10,16 @@ comp ax@(x:xs) ay@(y:ys) = case compare x y of
 	GT -> ("\t" ++ y) : comp ax ys
 comp xs [] = xs
 comp [] ys = ["\t" ++ y | y <- ys]
-comp _ _ = []
 
 main = do
 	args <- getArgs
-	fFileCont <- readFile (args !! 0)
-	sFileCont <- readFile (args !! 1)
-	let fFileLines = lines fFileCont
-	let sFileLines = lines sFileCont
-	let results = comp fFileLines sFileLines
-	forM_ results putStrLn
+	case args of
+		[fn1, fn2] -> do
+			fFileCont <- readFile fn1
+			sFileCont <- readFile fn2
+			let fFileLines = lines fFileCont
+			let sFileLines = lines sFileCont
+			let results = comp fFileLines sFileLines
+			forM_ results putStrLn
+		_ -> do
+			putStrLn "Usage: comm [file1] [file2]"
