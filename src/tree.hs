@@ -16,9 +16,7 @@ pDir dir ind = do
 		f fn = do
 			putStrLn $ (duplicate "    " ind) ++ "├── " ++ fn
 			isDir <- doesDirectoryExist $ dir </> fn
-			if isDir
-				then (flip pDir) (ind + 1) $ dir </> fn
-				else return ()
+			when (isDir) $ (flip pDir) (ind + 1) $ dir </> fn
 
 main = do
 	cDir <- getCurrentDirectory
