@@ -4,5 +4,6 @@ import Data.List
 
 main = do
 	curDir <- getCurrentDirectory
-	dirConts <- liftM sort $ getDirectoryContents curDir
-	mapM_ putStrLn dirConts
+	dirConts <- getDirectoryContents curDir
+	let sDirConts = sort dirConts
+	mapM_ putStrLn sDirConts
