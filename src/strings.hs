@@ -17,7 +17,7 @@ main = do
 		[a, b] -> do
 			contents <- readFile b
 			let minLength = read a :: Int
-			let strings = filter (\a -> length a > minLength) 
+			let strings = filter (\a -> length a >= minLength) 
 				$ map processFragment 
 				$ split '\0' contents
 			forM_ strings putStrLn
