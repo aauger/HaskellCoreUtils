@@ -1,0 +1,93 @@
+name:                HaskellCoreUtils
+version:             0.1.0.0
+-- synopsis:
+-- description:
+homepage:            https://github.com/aauger/HaskellCoreUtils#readme
+license:             GPL-3
+author:              Austin Auger
+maintainer:          austin.mark.auger@gmail.com
+copyright:           2017 Austin Auger
+category:            ??
+build-type:          Simple
+cabal-version:       >=1.10
+
+executable cat-exe
+  hs-source-dirs:      src
+  main-is:             cat.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+  default-language:    Haskell2010
+
+executable comm-exe
+  hs-source-dirs:      src
+  main-is:             comm.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+  default-language:    Haskell2010
+
+executable head-exe
+  hs-source-dirs:      src
+  main-is:             head.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+  default-language:    Haskell2010
+
+executable ls-exe
+  hs-source-dirs:      src
+  main-is:             ls.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base, directory
+  default-language:    Haskell2010
+
+executable more-exe
+  hs-source-dirs:      src
+  main-is:             more.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+  default-language:    Haskell2010
+
+executable squash-exe
+  hs-source-dirs:      src
+  main-is:             squash.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+  default-language:    Haskell2010
+
+executable strings-exe
+  hs-source-dirs:      src
+  main-is:             strings.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+  default-language:    Haskell2010
+
+executable tail-exe
+  hs-source-dirs:      src
+  main-is:             tail.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+  default-language:    Haskell2010
+
+executable tee-exe
+  hs-source-dirs:      src
+  main-is:             tee.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+  default-language:    Haskell2010
+
+executable tr-exe
+  hs-source-dirs:      src
+  main-is:             tr.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+  default-language:    Haskell2010
+
+executable tree-exe
+  hs-source-dirs:      src
+  main-is:             tree.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base, directory
+  default-language:    Haskell2010
+
+source-repository head
+  type:     git
+  location: https://github.com/githubuser/HaskellCoreUtils

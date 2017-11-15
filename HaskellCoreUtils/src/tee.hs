@@ -1,3 +1,5 @@
+module Main where
+
 import System.Environment
 import System.IO
 import Control.Monad

@@ -2,3 +2,4 @@
 *.txt
 
 *.sublime-project
+HaskellCoreUtils/.stack-work/

@@ -1,12 +1,7 @@
+module Main where
+
 import System.Environment
 import Control.Monad
-
-fShow :: [String] -> Int -> IO ()
-fShow [] _ = return ()
-fShow xs n = do
-	forM_ (take n xs) putStrLn
-	getChar
-	fShow (drop n xs) n
 
 main = do
 	args <- getArgs
@@ -15,11 +10,11 @@ main = do
 			contents <- readFile fn
 			let fFileLines = lines contents
 			let nv = read n :: Int
-			fShow fFileLines nv
+			let dCount = (length fFileLines) - nv
+			mapM_ putStrLn $ drop dCount fFileLines
 		[fn] -> do
 			contents <- readFile fn
 			let fFileLines = lines contents
-			fShow fFileLines 20
+			mapM_ putStrLn $ drop ((length fFileLines) - 20) fFileLines
 		_    -> do
-			putStrLn "Usage: more [optional: linecount] [filename]"
-
+			putStrLn "Usage: tail [optional: linecount] [filename]"

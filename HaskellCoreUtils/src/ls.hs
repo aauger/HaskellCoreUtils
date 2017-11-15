@@ -1,3 +1,5 @@
+module Main where
+
 import System.Directory
 import Control.Monad
 import Data.List

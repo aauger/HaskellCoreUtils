@@ -1,3 +1,5 @@
+module Main where
+
 import System.Environment
 import Control.Monad
 
@@ -8,11 +10,11 @@ main = do
 			contents <- readFile fn
 			let fFileLines = lines contents
 			let nv = read n :: Int
-			let dCount = (length fFileLines) - nv
-			mapM_ putStrLn $ drop dCount fFileLines
+			mapM_ putStrLn $ take nv fFileLines
 		[fn] -> do
 			contents <- readFile fn
 			let fFileLines = lines contents
-			mapM_ putStrLn $ drop ((length fFileLines) - 20) fFileLines
+			mapM_ putStrLn $ take 20 fFileLines
 		_    -> do
-			putStrLn "Usage: tail [optional: linecount] [filename]"
+			putStrLn "Usage: head [optional: linecount] [filename]"
+
