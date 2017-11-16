@@ -11,14 +11,14 @@ printDump :: [Word8] -> IO ()
 printDump s
 	| s == [] = return ()
 	| otherwise = do
-		mapM_ putStr $ map format (take 16 s)
+		mapM_ (putStr . format) (take 16 s)
 		putStrLn ""
 		printDump $ drop 16 s
 		where
 			hpad :: String -> Char -> Int -> String
 			hpad str c i = (replicate (i - (length str)) c) ++ str ++ " "
 			format :: Word8 -> String
-			format i = hpad (showHex i "") ' ' 2
+			format i = hpad (showHex i "") '0' 2
 
 main = do
 	args <- getArgs
