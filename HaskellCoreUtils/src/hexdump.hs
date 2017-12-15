@@ -9,14 +9,14 @@ import qualified Data.ByteString.Lazy as C
 
 printDump :: [Word8] -> IO ()
 printDump s
-	| s == [] = return ()
+	| null s = return ()
 	| otherwise = do
 		mapM_ (putStr . format) (take 16 s)
 		putStrLn ""
 		printDump $ drop 16 s
 		where
 			hpad :: String -> Char -> Int -> String
-			hpad str c i = (replicate (i - (length str)) c) ++ str ++ " "
+			hpad str c i = replicate (i - length str) c ++ str ++ " "
 			format :: Word8 -> String
 			format i = hpad (showHex i "") '0' 2
 
@@ -26,5 +26,5 @@ main = do
 		[fn] -> do
 			contents <- C.readFile fn
 			printDump (C.unpack contents)
-		_    -> do
+		_    ->
 			putStrLn "Usage: hexdump [filename]"
